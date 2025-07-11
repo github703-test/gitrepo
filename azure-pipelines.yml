@@ -1,20 +1,14 @@
 trigger:
-- master
+- main
 
 pool:
-  vmImage: 'ubuntu-latest'
+  name: Default
 
 steps:
-- task: UsePythonVersion@0
-  inputs:
-    versionSpec: '3.x'
-    addToPath: true
+#- task: UsePythonVersion@0
+#  inputs:
+#    versionSpec: '3.x'
+#    addToPath: true
 
-- script: |
-    python -m pip install --upgrade pip
-    pip install -r requirements.txt
-  displayName: 'Install dependencies'
-
-- script: |
-    python -m pytest
-  displayName: 'Run tests'
+- script: echo Hello,World! |
+  displayName: 'This is test message'
