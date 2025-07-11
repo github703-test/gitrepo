@@ -1,15 +1,25 @@
 trigger:
-- main
+  - main
 
 pool:
-  name: test
+  name: test  # Ensure this pool exists in your Azure DevOps organization
 
 steps:
-- script: echo Hello,World! |
-  displayName: 'This is test message'
-- task: Bash@3
-  inputs:
-     targetType: 'inline'
-     script: |
-       # Write your commands here
-       echo 'Hello world'
+  - script: |
+      echo "Hello, World!"
+      if [ $? -ne 0 ]; then
+        echo "Error: Failed to print Hello, World!"
+        exit 1
+      fi
+    displayName: 'This is test message'
+
+  - task: Bash@3
+    inputs:
+      targetType: 'inline'
+      script: |
+        # Write your commands here
+        echo 'Hello world'
+        if [ $? -ne 0 ]; then
+          echo "Error: Bash command failed"
+          exit 1
+        fi
